@@ -4,12 +4,16 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class ProductsService {
 
-    Product : Product[] = [];
+    private Products : Product[] = [];
     insertProduct( title:string, desc:string, price:number){
 
-        const prodId = Math.random().toString();
+        const prodId = Date.now().toString();
         const newProduct = new Product(prodId, title, desc, price);
-        this.Product.push(newProduct);
+        this.Products.push(newProduct);
         return prodId;
+
+    }
+    getAllProducts(){
+        return [...this.Products];
     }
 }
